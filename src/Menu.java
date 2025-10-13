@@ -4,6 +4,9 @@ public class Menu {
         System.out.println("Welcome to Battleship! Please choose from the following options:");
     }
     
+    public void presentStartMenu() {
+        
+    }
 
     public void chooseStartOption() {
 
