@@ -1,9 +1,5 @@
 public class Cell {
 
-    public enum CellState {
-        EMPTY, OCCUPIED, HIT, MISS
-    }
-
     private CellState state;
 
     public Cell() {
