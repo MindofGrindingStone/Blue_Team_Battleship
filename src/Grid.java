@@ -11,11 +11,19 @@ public abstract class Grid {
 
     //printing helper methods
     private void printHeader() {
-        
+        System.out.print("     ");
+        for (int c = 1; c <= 10; c++){
+            System.out.printf("%-3d ", c);
+        }
+        System.out.println();
     }
 
     private void printSeperator() {
-        
+        System.out.print("   +");
+        for(int c = 0; c < 10; c++){
+            System.out.print("---+");
+        }
+        System.out.println();
     }
 
     //returns the symbol for a given Cellstate(subclasses control this because it is different between Ocean grid and Target grid)
@@ -23,15 +31,33 @@ public abstract class Grid {
 
     //main print method
     public void print() {
+        printHeader();
+        printSeperatorLine();
 
+        for(int row = 0; row<10; row++){
+            char rowLabel = (char)('A' + row);
+            System.out.printf("%2c |", rowLabel);
+
+            for (int column = 0; column < 10; column ++){
+                char symbol = symbolFor(cells[row][column].getState());
+                System.out.printf(" %c |", symbol);
+            }
+
+            System.out.println();
+            printSeperatorLine();
+        }
+    }
+    public boolean inBounds(int row, int column) {
+        
     }
 
-    protected Cell getCellAt(Coordinate coord) {
+    protected Cell getCellAt(row, col) throws Exception {
         
     }
 
     protected void setCellState(Coordinate coord, CellState state) {
         
+    
     }
 
     protected CellState getCellState(Coordinate coord) {
