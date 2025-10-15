@@ -32,7 +32,7 @@ public abstract class Grid {
     //main print method
     public void print() {
         printHeader();
-        printSeperatorLine();
+        printSeperator();
 
         for(int row = 0; row<10; row++){
             char rowLabel = (char)('A' + row);
@@ -44,24 +44,28 @@ public abstract class Grid {
             }
 
             System.out.println();
-            printSeperatorLine();
+            printSeperator();
         }
     }
-    public boolean inBounds(int row, int column) {
-        
+    public boolean inBounds(Coordinate coord) {
+        int row = coord.getRow();
+        int column = coord.getColumn();
+        return row >= 0 && row < 10 && column >= 0 && column < 10;
     }
 
-    protected Cell getCellAt(row, col) throws Exception {
+    protected Cell getCellAt(Coordinate coord){
+        if (!inBounds(coord)) throw new IndexOutOfBoundsException("this is out of bounds choose a different location");
         
+        return cells[coord.getRow()][coord.getColumn()];
     }
 
     protected void setCellState(Coordinate coord, CellState state) {
-        
+        getCellAt(coord).setState(state);
     
     }
 
     protected CellState getCellState(Coordinate coord) {
-        
+        getCellAt(coord).getState();
     }
     
 
