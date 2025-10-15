@@ -5,10 +5,19 @@ public class Menu {
     }
     
     public void presentStartMenu() {
-        
+        greetUser();
+        Integer choice = Character.getNumericValue(ConsoleHelper.getInput("1. Start New Game\n2. Tutorial\n3. Exit").charAt(0));
+        while (true) {
+        if (choice < 1 || choice > 3) {
+        System.out.println("Invalid choice, please try again.");
+        } else {
+        chooseStartOption(choice);
+        break;
+        }
+    }
     }
 
-    public void chooseStartOption() {
+    public void chooseStartOption(int choice) {
 
     }
 
