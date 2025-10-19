@@ -65,7 +65,7 @@ public abstract class Grid {
     }
 
     protected CellState getCellState(Coordinate coord) {
-        getCellAt(coord).getState();
+       return getCellAt(coord).getState();
     }
     
 
