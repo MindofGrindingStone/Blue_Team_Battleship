@@ -15,6 +15,7 @@ public class Game {
     }
 
     public void playTutorial() {
-        // tutorial logic
+        System.out.println("Hey " + players.get(0).getName() + "! This is the tutorial.");
+        ConsoleHelper.getInput("Press Enter to continue...");
     }
 }
