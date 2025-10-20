@@ -22,10 +22,16 @@ public class OceanGrid extends Grid {
     }
 }
 
-    //Override for abstract method in grid: public abstract char symbolFor(CellState state);
+    //shows your ships; hits and misses visible
     @Override
-    public char symbolFor(CellState state) {
-         throw new UnsupportedOperationException("Unimplemented method 'symbolFor'");
+    public char symbolFor(Cell cell) {
+        return switch (cell.getState()) {
+            case EMPTY -> '-';
+            case OCCUPIED -> 'O';
+            case HIT -> 'X';
+            case MISS -> '0';
+        
+        };
     }
 }
     

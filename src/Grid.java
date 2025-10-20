@@ -27,7 +27,7 @@ public abstract class Grid {
     }
 
     //returns the symbol for a given Cellstate(subclasses control this because it is different between Ocean grid and Target grid)
-    public abstract char symbolFor(CellState state);
+    public abstract char symbolFor(Cell cell);
 
     //main print method
     public void print() {
@@ -39,7 +39,7 @@ public abstract class Grid {
             System.out.printf("%2c |", rowLabel);
 
             for (int column = 0; column < 10; column ++){
-                char symbol = symbolFor(cells[row][column].getState());
+                char symbol = symbolFor(cells[row][column]);
                 System.out.printf(" %c |", symbol);
             }
 
