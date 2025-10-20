@@ -10,7 +10,7 @@ public class Coordinate {
     }
 
     public Coordinate(String human) {
-        human = human.trim().replace(" ", "").toUpperCase(); // "A1", "A 1"
+        human = human.trim().replace(" ", "").toUpperCase(); 
         this.row = human.charAt(0) - 'A';
         this.column = Integer.parseInt(human.substring(1)) - 1;
     }
