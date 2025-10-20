@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Menu {
 
-    private List<Player> players;
+    private List<Player> players = new java.util.ArrayList<>();
     private Game game;
 
     private void greetUser() {

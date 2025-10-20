@@ -1,5 +1,3 @@
-import java.lang.annotation.Target;
-
 public class Player {
     private String name;
     private OceanGrid oceanGrid;
