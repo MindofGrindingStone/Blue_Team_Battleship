@@ -49,11 +49,13 @@ public class Menu {
                 game.play();
                 break;
             case 1:
+                players.clear();
                 chooseNumberOfPlayers();
                 game = new Game(players);
                 game.play();
                 break;
             case 2:
+                players.clear();
                 chooseNumberOfPlayers(); // needs to be revisited
                 game = new Game(players);
                 game.playTutorial();
