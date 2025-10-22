@@ -8,7 +8,21 @@ public class Menu {
     private Game game;
 
     private void greetUser() {
-        System.out.println("Welcome to Battleship! Please choose from the following options:");
+        System.out.println("\r\n" + //
+                        "\r\n" + //
+                        " __     __     ______     __         ______     ______     __    __     ______        ______   ______   \r\n" + //
+                        "/\\ \\  _ \\ \\   /\\  ___\\   /\\ \\       /\\  ___\\   /\\  __ \\   /\\ \"-./  \\   /\\  ___\\      /\\__  _\\ /\\  __ \\  \r\n" + //
+                        "\\ \\ \\/ \".\\ \\  \\ \\  __\\   \\ \\ \\____  \\ \\ \\____  \\ \\ \\/\\ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\/_/\\ \\/ \\ \\ \\/\\ \\ \r\n" + //
+                        " \\ \\__/\".~\\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\       \\ \\_\\  \\ \\_____\\\r\n" + //
+                        "  \\/_/   \\/_/   \\/_____/   \\/_____/   \\/_____/   \\/_____/   \\/_/  \\/_/   \\/_____/        \\/_/   \\/_____/\r\n" + //
+                        "                                                                                                        \r\n" + //
+                        " ______     ______     ______   ______   __         ______     ______     __  __     __     ______      \r\n" + //
+                        "/\\  == \\   /\\  __ \\   /\\__  _\\ /\\__  _\\ /\\ \\       /\\  ___\\   /\\  ___\\   /\\ \\_\\ \\   /\\ \\   /\\  == \\     \r\n" + //
+                        "\\ \\  __<   \\ \\  __ \\  \\/_/\\ \\/ \\/_/\\ \\/ \\ \\ \\____  \\ \\  __\\   \\ \\___  \\  \\ \\  __ \\  \\ \\ \\  \\ \\  _-/     \r\n" + //
+                        " \\ \\_____\\  \\ \\_\\ \\_\\    \\ \\_\\    \\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\/\\_____\\  \\ \\_\\ \\_\\  \\ \\_\\  \\ \\_\\       \r\n" + //
+                        "  \\/_____/   \\/_/\\/_/     \\/_/     \\/_/   \\/_____/   \\/_____/   \\/_____/   \\/_/\\/_/   \\/_/   \\/_/       \r\n" + //
+                        "\r\n" + //
+                        "");
     }
 
     public void presentStartMenu() {
@@ -49,12 +63,14 @@ public class Menu {
                 game.play();
                 break;
             case 1:
+                players.clear();
                 chooseNumberOfPlayers();
                 game = new Game(players);
                 game.play();
                 break;
             case 2:
-                chooseNumberOfPlayers(); // needs to be revisited
+                players.clear();
+                chooseNumberOfPlayers(); // needs to be revisited tutorial as a subclass of game
                 game = new Game(players);
                 game.playTutorial();
                 break;

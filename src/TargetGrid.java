@@ -11,7 +11,7 @@ public class TargetGrid extends Grid {
             case EMPTY -> '-';
             case HIT -> 'X';
             case MISS -> '0';
-            case OCCUPIED -> '-'; // should not happen in TargetGrid, treat as empty
+            case OCCUPIED -> '-'; // should not happen in TargetGrid, treat as empty 
         };
     }
     
