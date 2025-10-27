@@ -3,8 +3,8 @@ import java.util.*;
 
 public abstract class ShipFactory {
 
-    private List<Ship> ships;
-    private Set<Coordinate> coordinates;
+    private List<Ship> ships = new ArrayList<>();
+    private Set<Coordinate> occupiedCoordinates = new HashSet<>();
 
     public List<Ship> getShips() {
     }
