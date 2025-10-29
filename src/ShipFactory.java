@@ -1,8 +1,6 @@
 
 import java.util.*;
 
-import apple.laf.JRSUIConstants.Direction;
-
 public abstract class ShipFactory {
 
     public List<Ship> getShips() {
@@ -12,7 +10,7 @@ public abstract class ShipFactory {
     private List<Ship> createShips() {
         List<Ship> ships= new ArrayList<>();
         Set<Coordinate> occupiedCoordinates = new HashSet<>();
-        for (Map.Entry<String, Integer> entry : Constants.shipTypes.entrySet()) {
+        for (Map.Entry<String, Integer> entry : Constants.getSHIP_SPECS().entrySet()) {
             String name = entry.getKey();
             int length = entry.getValue();
             while (true) {
