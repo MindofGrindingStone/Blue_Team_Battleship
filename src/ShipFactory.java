@@ -37,7 +37,7 @@ public abstract class ShipFactory {
         return ships;
     }
 
-    public abstract Coordinate chooseStartingCoordinate(String name, int length) throws Exception;
+    protected abstract Coordinate chooseStartingCoordinate(String name, int length) throws Exception;
 
     protected abstract Direction chooseOrientation();
     
