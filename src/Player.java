@@ -2,11 +2,13 @@ public class Player {
     private String name;
     private OceanGrid oceanGrid;
     private TargetGrid targetGrid;
+    private ShipFactory shipFactory;
 
-    public Player(String name) {
+    public Player(String name, ShipFactory shipFactory) {
         this.name = name;
         this.oceanGrid = new OceanGrid();
         this.targetGrid = new TargetGrid();
+        this.shipFactory = shipFactory;
     }
 
     public String getName() {

@@ -1,28 +1,41 @@
 
 import java.util.List;
 
-
 public class Menu {
 
     private List<Player> players = new java.util.ArrayList<>();
     private Game game;
 
     private void greetUser() {
-        System.out.println("\r\n" + //
-                        "\r\n" + //
-                        " __     __     ______     __         ______     ______     __    __     ______        ______   ______   \r\n" + //
-                        "/\\ \\  _ \\ \\   /\\  ___\\   /\\ \\       /\\  ___\\   /\\  __ \\   /\\ \"-./  \\   /\\  ___\\      /\\__  _\\ /\\  __ \\  \r\n" + //
-                        "\\ \\ \\/ \".\\ \\  \\ \\  __\\   \\ \\ \\____  \\ \\ \\____  \\ \\ \\/\\ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\/_/\\ \\/ \\ \\ \\/\\ \\ \r\n" + //
-                        " \\ \\__/\".~\\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\       \\ \\_\\  \\ \\_____\\\r\n" + //
-                        "  \\/_/   \\/_/   \\/_____/   \\/_____/   \\/_____/   \\/_____/   \\/_/  \\/_/   \\/_____/        \\/_/   \\/_____/\r\n" + //
-                        "                                                                                                        \r\n" + //
-                        " ______     ______     ______   ______   __         ______     ______     __  __     __     ______      \r\n" + //
-                        "/\\  == \\   /\\  __ \\   /\\__  _\\ /\\__  _\\ /\\ \\       /\\  ___\\   /\\  ___\\   /\\ \\_\\ \\   /\\ \\   /\\  == \\     \r\n" + //
-                        "\\ \\  __<   \\ \\  __ \\  \\/_/\\ \\/ \\/_/\\ \\/ \\ \\ \\____  \\ \\  __\\   \\ \\___  \\  \\ \\  __ \\  \\ \\ \\  \\ \\  _-/     \r\n" + //
-                        " \\ \\_____\\  \\ \\_\\ \\_\\    \\ \\_\\    \\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\/\\_____\\  \\ \\_\\ \\_\\  \\ \\_\\  \\ \\_\\       \r\n" + //
-                        "  \\/_____/   \\/_/\\/_/     \\/_/     \\/_/   \\/_____/   \\/_____/   \\/_____/   \\/_/\\/_/   \\/_/   \\/_/       \r\n" + //
-                        "\r\n" + //
-                        "");
+        System.out.println("\r\n"
+                + //
+                "\r\n"
+                + //
+                " __     __     ______     __         ______     ______     __    __     ______        ______   ______   \r\n"
+                + //
+                "/\\ \\  _ \\ \\   /\\  ___\\   /\\ \\       /\\  ___\\   /\\  __ \\   /\\ \"-./  \\   /\\  ___\\      /\\__  _\\ /\\  __ \\  \r\n"
+                + //
+                "\\ \\ \\/ \".\\ \\  \\ \\  __\\   \\ \\ \\____  \\ \\ \\____  \\ \\ \\/\\ \\  \\ \\ \\-./\\ \\  \\ \\  __\\      \\/_/\\ \\/ \\ \\ \\/\\ \\ \r\n"
+                + //
+                " \\ \\__/\".~\\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\ \\_\\  \\ \\_____\\       \\ \\_\\  \\ \\_____\\\r\n"
+                + //
+                "  \\/_/   \\/_/   \\/_____/   \\/_____/   \\/_____/   \\/_____/   \\/_/  \\/_/   \\/_____/        \\/_/   \\/_____/\r\n"
+                + //
+                "                                                                                                        \r\n"
+                + //
+                " ______     ______     ______   ______   __         ______     ______     __  __     __     ______      \r\n"
+                + //
+                "/\\  == \\   /\\  __ \\   /\\__  _\\ /\\__  _\\ /\\ \\       /\\  ___\\   /\\  ___\\   /\\ \\_\\ \\   /\\ \\   /\\  == \\     \r\n"
+                + //
+                "\\ \\  __<   \\ \\  __ \\  \\/_/\\ \\/ \\/_/\\ \\/ \\ \\ \\____  \\ \\  __\\   \\ \\___  \\  \\ \\  __ \\  \\ \\ \\  \\ \\  _-/     \r\n"
+                + //
+                " \\ \\_____\\  \\ \\_\\ \\_\\    \\ \\_\\    \\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\/\\_____\\  \\ \\_\\ \\_\\  \\ \\_\\  \\ \\_\\       \r\n"
+                + //
+                "  \\/_____/   \\/_/\\/_/     \\/_/     \\/_/   \\/_____/   \\/_____/   \\/_____/   \\/_/\\/_/   \\/_/   \\/_/       \r\n"
+                + //
+                "\r\n"
+                + //
+                "");
     }
 
     public void presentStartMenu() {
@@ -88,7 +101,6 @@ public class Menu {
         right before creating a new game to play the tutorial, maybe we need another method to call
         that would create a tutorial player? Let me know what you think or if you feel like you have
         a good idea just throw it in*/
-        
 
         int numPlayers = 0;
         while (true) {
@@ -106,7 +118,23 @@ public class Menu {
 
         for (int i = 1; i <= numPlayers; i++) {
             String name = ConsoleHelper.getInput("Enter name for Player " + i + ": ");
-            Player player = new Player(name);
+            //ask for what kind of ship factory they want.
+            ShipFactory shipFactory;
+            while (true) {
+                String factoryChoice = (ConsoleHelper.getInput("Choose a ship factory, press M for manual and A for automatic:")).toLowerCase();
+                if (factoryChoice == "a") {
+                    shipFactory = new AutomaticShipFactory();
+                    break;
+                } else if (factoryChoice == "m") {
+                    shipFactory = new ManualShipFactory();
+                    break;
+                } else {
+                    System.out.println("Invalid input, please enter A for automatic or M for Manual.");
+                }
+
+            }
+
+            Player player = new Player(name, shipFactory);
             players.add(player);
         }
 
@@ -119,4 +147,3 @@ public class Menu {
     }
 
 }
-
