@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 public class ATargetGridDisplay {
     static class T extends TargetGrid {
-        void set(int r, int c, CellState s) { getCellAt(new Coordinate(r, c), s); }
+        void set(int r, int c, CellState s) { setCellState(new Coordinate(r, c), s); }
     }
 
     @Test
