@@ -1,20 +1,42 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Ship {
-    public class Ships {
-    public static void main(String[] args) {
-        Map<String, Integer> Ships = new HashMap<>();
-        Ships.put("Carrier", 5);
-        Ships.put("Battleship", 4);
-        Ships.put("Cruiser", 3);
-        Ships.put("Submarine", 3);
-        Ships.put("Destroyer", 2);
+    private String name;
+    private Set<Coordinate> coords = new LinkedHashSet<>();
+    private Set<Coordinate> hits   = new HashSet<>();
 
-        }
+    public Ship(String name) {
+        this.name = name;
     }
 
-    public boolean IsSunk() {
-        return false;
+    public String getName() { 
+        return name; 
+    }
+    public int getLength() { 
+        Integer len = Constants.getSHIP_SPECS().get(name);
+        return len == null ? 0 : len;
+    }
+    public Set<Coordinate> getCoordinates() { 
+        return Collections.unmodifiableSet(coords); 
+    }
+
+    public Set<Coordinate> getCoords() {
+        return getCoordinates();
+    }
+    public void addCoordinate(Coordinate c) { 
+        coords.add(c); 
+    }
+
+    public void registerHit(Coordinate c) {
+        if (coords.contains(c)) hits.add(c);
+    }
+
+ 
+    public void registerHitAt(Coordinate c) {
+        registerHit(c);
+    }
+
+    public boolean isSunk() {
+        return hits.size() == getLength();
     }
 }
