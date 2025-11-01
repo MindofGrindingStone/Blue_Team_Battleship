@@ -140,7 +140,8 @@ public class Menu {
 
         // For a single player game, create an AI opponent
         if (numPlayers == 1) {
-            Player ai = new Player("Computer");
+            ShipFactory aiShipFactory = new AutomaticShipFactory();
+            Player ai = new Player("Computer", aiShipFactory );
             players.add(ai);
             System.out.println("A computer opponent has been added!");
         }
