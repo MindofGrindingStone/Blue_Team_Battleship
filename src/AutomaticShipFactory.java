@@ -1,6 +1,12 @@
-
-public abstract class AutomaticShipFactory extends ShipFactory {
-    protected abstract Coordinate chooseStartingCoordinate(String name, int length) throws Exception;
+public class AutomaticShipFactory extends ShipFactory {
     
-    protected abstract Direction chooseOrientation();
+
+    protected Coordinate chooseStartingCoordinate(String name, int length) {
+        return Coordinate.randomCoordinate();
+    }
+
+    
+    protected Direction chooseOrientation() {
+        return Direction.randomDirection();
+    }
 }

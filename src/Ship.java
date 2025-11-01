@@ -1,42 +1,34 @@
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Ship {
     private String name;
-    private Set<Coordinate> coords = new LinkedHashSet<>();
-    private Set<Coordinate> hits   = new HashSet<>();
+    private Set<Coordinate> coords;
+    private Set<Coordinate> hits;
 
-    public Ship(String name) {
-        this.name = name;
+    public Ship(int length, String name, Set<Coordinate> coords) {
+        this.name = (name == null) ? "" : name.trim();
+        this.coords = (coords == null) ? new LinkedHashSet<>() : new LinkedHashSet<>(coords);
+        this.hits = new HashSet<>();
     }
 
-    public String getName() { 
-        return name; 
-    }
-    public int getLength() { 
-        Integer len = Constants.getSHIP_SPECS().get(name);
-        return len == null ? 0 : len;
-    }
-    public Set<Coordinate> getCoordinates() { 
-        return Collections.unmodifiableSet(coords); 
+    public String getName() {
+        return name;
     }
 
     public Set<Coordinate> getCoords() {
-        return getCoordinates();
-    }
-    public void addCoordinate(Coordinate c) { 
-        coords.add(c); 
+        return Collections.unmodifiableSet(coords);
     }
 
-    public void registerHit(Coordinate c) {
-        if (coords.contains(c)) hits.add(c);
+    public Boolean isSunk() {
+        return hits.containsAll(coords);
     }
 
- 
-    public void registerHitAt(Coordinate c) {
-        registerHit(c);
-    }
-
-    public boolean isSunk() {
-        return hits.size() == getLength();
+    public void registerHitAt(Coordinate coord) {
+        if (coords.contains(coord)) {
+            hits.add(coord);
+        }
     }
 }
