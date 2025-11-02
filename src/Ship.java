@@ -18,6 +18,10 @@ public class Ship {
         return name;
     }
 
+    public int getLength() {
+        return coords.size();
+    }
+
     public Set<Coordinate> getCoords() {
         return Collections.unmodifiableSet(coords);
     }

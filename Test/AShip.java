@@ -2,7 +2,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,8 @@ public class AShip {
     //assign ship a name and verify getName returns the correct value
     @Test
     void testGetName() throws Exception {
-        List<Coordinate> coords = Arrays.asList(new Coordinate("A1"), new Coordinate("A2"));
-        Ship ship = new Ship("Destroyer", coords, 2);
+        Set<Coordinate> coords = new HashSet<>(Arrays.asList(new Coordinate("A1"), new Coordinate("A2")));
+        Ship ship = new Ship(2, "Destroyer", coords);
 
         assertEquals("Destroyer", ship.getName(), "Ship name should match constructor value");
     }
@@ -21,8 +22,8 @@ public class AShip {
     //verify getLength finds the correct value
     @Test
     void testGetLength() throws Exception {
-        List<Coordinate> coords = Arrays.asList(new Coordinate("B1"), new Coordinate("B2"), new Coordinate("B3"));
-        Ship ship = new Ship("Cruiser", coords, 3);
+        Set<Coordinate> coords = new HashSet<>(Arrays.asList(new Coordinate("B1"), new Coordinate("B2"), new Coordinate("B3")));
+        Ship ship = new Ship(3, "Cruiser", coords);
 
         assertEquals(3, ship.getLength(), "Ship length should match constructor value");
     }
@@ -30,10 +31,10 @@ public class AShip {
     //verify that ship can find the coordinates
     @Test
     void testGetCoordinates() throws Exception {
-        List<Coordinate> coords = Arrays.asList(new Coordinate("C1"), new Coordinate("C2"));
-        Ship ship = new Ship("Submarine", coords, 2);
+        Set<Coordinate> coords = new HashSet<>(Arrays.asList(new Coordinate("C1"), new Coordinate("C2")));
+        Ship ship = new Ship(2, "Submarine", coords);
 
-        assertIterableEquals(coords, ship.getCoordinates(),
+        assertIterableEquals(coords, ship.getCoords(),
             "Ship coordinates should match the list passed to constructor");
     }
 }
