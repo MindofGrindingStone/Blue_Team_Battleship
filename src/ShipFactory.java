@@ -22,7 +22,9 @@ public abstract class ShipFactory {
                         occupiedCoordinates.addAll(ship.getCoords());
                         ships.add(ship);
                         if (this instanceof ManualShipFactory) {
-                            System.out.println(name + " placed at: " + ship.getCoords());
+                            List<Coordinate> sortedCoords = new ArrayList<>(ship.getCoords());
+                            sortedCoords.sort(Comparator.comparing(Coordinate::toString));
+                            System.out.println((name + " placed at: " + sortedCoords).replace("[", "").replace("]", ""));
                         }
                         break; // Exit the loop if ship is successfully created
                     } else {
