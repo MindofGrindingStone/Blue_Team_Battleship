@@ -13,7 +13,7 @@ public abstract class Grid {
     private void printHeader() {
         System.out.print("     ");
         for (int c = 1; c <= 10; c++) {
-            System.out.print(ConsoleColors.BLUE);
+            System.out.print(ConsoleColors.CYAN);
             System.out.printf("%-3d ", c);
             System.out.print(ConsoleColors.RESET);
         }
@@ -21,10 +21,10 @@ public abstract class Grid {
     }
 
     private void printSeperator() {
-        System.out.print("   " + ConsoleColors.BLUE + "+" + ConsoleColors.RESET);
+        System.out.print("   " + ConsoleColors.CYAN + "+" + ConsoleColors.RESET);
 
         for (int c = 0; c < 10; c++) {
-            System.out.print(ConsoleColors.BLUE + "---+" + ConsoleColors.RESET);
+            System.out.print(ConsoleColors.CYAN + "---+" + ConsoleColors.RESET);
         }
         System.out.println();
     }
@@ -40,12 +40,12 @@ public abstract class Grid {
 
         for (int row = 0; row < 10; row++) {
             char rowLabel = (char) ('A' + row);
-            System.out.printf("%2s %s", ConsoleColors.BLUE + rowLabel, " |" + ConsoleColors.RESET);
+            System.out.printf("%2s %s", ConsoleColors.CYAN + rowLabel, " |" + ConsoleColors.RESET);
 
 
             for (int column = 0; column < 10; column++) {
                 String symbol = symbolFor(cells[row][column]);
-                System.out.printf(" %s %s", symbol, ConsoleColors.BLUE + "|" + ConsoleColors.RESET);
+                System.out.printf(" %s %s", symbol, ConsoleColors.CYAN + "|" + ConsoleColors.RESET);
 
             }
 
