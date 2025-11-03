@@ -26,4 +26,9 @@ public class Player {
         oceanGrid.print();
     }
 
+    public void reset() {
+        this.oceanGrid = new OceanGrid();
+        this.targetGrid = new TargetGrid();
+    }
+
 }

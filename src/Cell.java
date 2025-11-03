@@ -1,6 +1,7 @@
 public class Cell {
 
     private CellState state;
+    Ship ship = null;
 
     public Cell() {
         //start cell as empty
@@ -14,6 +15,14 @@ public class Cell {
         //set cell state
     public void setState(CellState newState) {
         this.state = newState;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
     
 }

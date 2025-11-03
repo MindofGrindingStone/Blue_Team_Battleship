@@ -21,6 +21,9 @@ public abstract class ShipFactory {
                     if (!checkIntersection(ship, occupiedCoordinates)) {
                         occupiedCoordinates.addAll(ship.getCoords());
                         ships.add(ship);
+                        if (this instanceof ManualShipFactory) {
+                            System.out.println(name + " placed at: " + ship.getCoords());
+                        }
                         break; // Exit the loop if ship is successfully created
                     } else {
                         if (this instanceof ManualShipFactory) {
@@ -48,13 +51,13 @@ public abstract class ShipFactory {
                 Direction orientation = chooseOrientation();
                 switch (orientation) {
                     case Direction.NORTH:
-                        return generateCoordinatesInDirection(coord, length, 0, -1);
-                    case Direction.EAST:
-                        return generateCoordinatesInDirection(coord, length, 1, 0);
-                    case Direction.SOUTH:
-                        return generateCoordinatesInDirection(coord, length, 0, 1);
-                    case Direction.WEST:
                         return generateCoordinatesInDirection(coord, length, -1, 0);
+                    case Direction.EAST:
+                        return generateCoordinatesInDirection(coord, length, 0, 1);
+                    case Direction.SOUTH:
+                        return generateCoordinatesInDirection(coord, length, 1, 0);
+                    case Direction.WEST:
+                        return generateCoordinatesInDirection(coord, length, 0, -1);
                     default:
                         if (this instanceof ManualShipFactory) {
                             System.out.println("Invalid orientation. Please enter N, E, S, or W.");

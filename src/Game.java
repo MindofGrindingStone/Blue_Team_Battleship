@@ -9,6 +9,8 @@ public class Game {
     }
 
     public void play() { // method is not fully functional, only currently shows the grid of the first player then has them place ships
+        players.get(0).reset();
+        players.get(1).reset();
         players.get(0).displayGrids(); // temporary line to test grid printing
         System.out.println("Thanks for showing up " + players.get(0).getName() + "!");
         for(Player player : players){
