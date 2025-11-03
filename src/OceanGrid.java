@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +42,12 @@ public class OceanGrid extends Grid {
 
     // Returns the symbol to display for a cell (used when printing the grid)
     @Override
-    public char symbolFor(Cell cell) {
+    public String symbolFor(Cell cell) {
         return switch (cell.getState()) {
-            case EMPTY -> ' ';
-            case OCCUPIED -> cell.getShip().getName().charAt(0); // First letter of ship name
-            case HIT -> 'X';
-            case MISS -> '0';
+            case EMPTY -> " ";
+            case OCCUPIED -> ConsoleColors.GREY + String.valueOf(cell.getShip().getName().charAt(0)) + ConsoleColors.RESET; // First letter of ship name
+            case HIT -> ConsoleColors.RED + "X" + ConsoleColors.RESET;
+            case MISS -> ConsoleColors.WHITE + "0" + ConsoleColors.RESET;
         };
     }
 }
