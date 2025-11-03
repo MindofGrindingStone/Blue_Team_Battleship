@@ -43,7 +43,7 @@ public class OceanGrid extends Grid {
     @Override
     public char symbolFor(Cell cell) {
         return switch (cell.getState()) {
-            case EMPTY -> '-';
+            case EMPTY -> ' ';
             case OCCUPIED -> cell.getShip().getName().charAt(0); // First letter of ship name
             case HIT -> 'X';
             case MISS -> '0';
