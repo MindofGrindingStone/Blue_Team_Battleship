@@ -12,8 +12,8 @@ public class OceanGrid extends Grid {
     }
 
     // Assign a single ship to the grid
-    public void assignShip(List<Coordinate> shipCoordinates, Ship ship) {
-        for (Coordinate coord : shipCoordinates) {
+    private void assignShip(Ship ship) {
+        for (Coordinate coord : ship.getCoords()) {
             setCellState(coord, CellState.OCCUPIED);
             getCellAt(coord).setShip(ship);
         }
@@ -22,7 +22,7 @@ public class OceanGrid extends Grid {
     // Assign multiple ships and place them on the grid
     public void assignShips(List<Ship> shipsToAdd) {
         for (Ship ship : shipsToAdd) {
-            assignShip(new ArrayList<>(ship.getCoords()), ship);
+            assignShip(ship);
             ships.add(ship);
         }
     }
