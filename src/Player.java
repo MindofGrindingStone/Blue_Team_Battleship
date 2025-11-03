@@ -1,8 +1,8 @@
 public class Player {
     private String name;
-    private OceanGrid oceanGrid;
+    public OceanGrid oceanGrid;
     private TargetGrid targetGrid;
-    private ShipFactory shipFactory;
+    public ShipFactory shipFactory;
 
     public Player(String name, ShipFactory shipFactory) {
         this.name = name;

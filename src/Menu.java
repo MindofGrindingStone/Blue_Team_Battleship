@@ -80,6 +80,7 @@ public class Menu {
                 chooseNumberOfPlayers();
                 game = new Game(players);
                 game.play();
+                
                 break;
             case 2:
                 players.clear();
@@ -122,10 +123,10 @@ public class Menu {
             ShipFactory shipFactory;
             while (true) {
                 String factoryChoice = (ConsoleHelper.getInput("Choose a ship factory, press M for manual and A for automatic:")).toLowerCase();
-                if (factoryChoice == "a") {
+                if (factoryChoice.equals("a")) {
                     shipFactory = new AutomaticShipFactory();
                     break;
-                } else if (factoryChoice == "m") {
+                } else if (factoryChoice.equals("m")) {
                     shipFactory = new ManualShipFactory();
                     break;
                 } else {
