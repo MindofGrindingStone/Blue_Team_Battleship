@@ -40,7 +40,7 @@ public abstract class Grid {
 
         for (int row = 0; row < 10; row++) {
             char rowLabel = (char) ('A' + row);
-            System.out.printf("%2s %s", ConsoleColors.BLUE + rowLabel, "|" + ConsoleColors.RESET);
+            System.out.printf("%2s %s", ConsoleColors.BLUE + rowLabel, " |" + ConsoleColors.RESET);
 
 
             for (int column = 0; column < 10; column++) {
