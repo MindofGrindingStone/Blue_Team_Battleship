@@ -35,4 +35,21 @@ public class Player {
         this.targetGrid = new TargetGrid();
     }
 
+    public Coordinate takeShot() {
+        Coordinate shot;
+        while (true) {
+            try {
+                shot = new Coordinate(ConsoleHelper.getInput("Input Coordinate for shot:"));
+                break;
+            } catch (Exception e) {
+                System.out.println("invalid shot");
+            }
+        }
+        return shot;
+    }
+
+    public void recieveShotResult(Coordinate shot, CellState result) {
+        targetGrid.recieveShotResult(shot, result);
+    }
+
 }
