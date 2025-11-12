@@ -11,6 +11,10 @@ public class Player {
         this.shipFactory = shipFactory;
     }
 
+    public CellState receiveShot(Coordinate coordinate) {
+        return oceanGrid.receiveShot(coordinate);
+    }
+
     public String getName() {
         return name;
     }
