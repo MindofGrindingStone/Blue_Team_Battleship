@@ -10,6 +10,8 @@ public abstract class ShipFactory {
     private List<Ship> createShips() {
         List<Ship> ships= new ArrayList<>();
         Set<Coordinate> occupiedCoordinates = new HashSet<>();
+        PlacementGrid pg = new PlacementGrid();
+        
         for (Map.Entry<String, Integer> entry : Constants.getSHIP_SPECS().entrySet()) {
             String name = entry.getKey();
             int length = entry.getValue();
@@ -22,6 +24,8 @@ public abstract class ShipFactory {
                         occupiedCoordinates.addAll(ship.getCoords());
                         ships.add(ship);
                         if (this instanceof ManualShipFactory) {
+                            pg.assignShip(ship);
+                            pg.print();
                             List<Coordinate> sortedCoords = new ArrayList<>(ship.getCoords());
                             sortedCoords.sort(Comparator.comparing(Coordinate::toString));
                             System.out.println((name + " placed at: " + sortedCoords).replace("[", "").replace("]", ""));
