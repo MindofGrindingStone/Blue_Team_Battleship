@@ -26,16 +26,32 @@ public class OceanGrid extends Grid {
         }
     }
 
-    // Process a shot at a coordinate and return whether it was a hit or miss
-    public CellState receiveShot(Coordinate coord) {
-        Cell cell = getCellAt(coord);
-
-        if (cell.getState() == CellState.OCCUPIED) {
+    public ShotResult receiveShot(Coordinate shot) { // NOTE: this method assumes that no duplicate shots are getting through from the other side
+        Cell cell = getCellAt(shot);
+        if (getCellState(shot) == CellState.OCCUPIED) {
+            // get ship and make and set new cell state as well as register hit on ship
+            Ship ship = cell.getShip();
             cell.setState(CellState.HIT);
-            return CellState.HIT;
+            ship.registerHitAt(shot);
+
+            // create shot result and return
+            if (ship.isSunk()) {
+                ShotResult shotResult = ShotResult.SUNK;
+                shotResult.setShipName(ship.getName());
+                shotResult.setCoordinate(shot);
+                return shotResult;
+            } else {
+                ShotResult shotResult = ShotResult.HIT;
+                shotResult.setShipName(ship.getName());
+                shotResult.setCoordinate(shot);
+                return shotResult;
+            }
         } else {
+            // if the shot is a miss, much less to worry about
             cell.setState(CellState.MISS);
-            return CellState.MISS;
+            ShotResult shotResult = ShotResult.MISS;
+            shotResult.setCoordinate(shot);
+            return shotResult;
         }
     }
 
@@ -44,22 +60,20 @@ public class OceanGrid extends Grid {
     public String symbolFor(Cell cell) {
         return switch (cell.getState()) {
             case EMPTY -> " ";
-            case OCCUPIED -> ConsoleColors.GREY + String.valueOf(cell.getShip().getName().charAt(0)) + ConsoleColors.RESET; // First letter of ship name
+            case OCCUPIED ->
+                ConsoleColors.GREY + String.valueOf(cell.getShip().getName().charAt(0)) + ConsoleColors.RESET; // First letter of ship name
             case HIT -> ConsoleColors.RED + "X" + ConsoleColors.RESET;
             case MISS -> ConsoleColors.WHITE + "0" + ConsoleColors.RESET;
         };
     }
 
-    //Returs true if all ships are sunk
-    public boolean allShipsSunk() {
-        for (int row = 0; row < 10; row++) {
-            for (int col = 0; col < 10; col++) {
-                if (cells[row][col].getState() == CellState.OCCUPIED) {
-                    return false; // Found a ship part still afloat
-                }
+    // Returns true if all ships are sunk
+    public Boolean areAllShipsSunk() {
+        for (Ship ship : ships) {
+            if (!ship.isSunk()) {
+                return false;
             }
         }
-        System.out.println("All ships have been sunk!");
-        return true; // No OCCUPIED cells left, all ships sunk
+        return true;
     }
 }
