@@ -1,4 +1,3 @@
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,5 +48,18 @@ public class OceanGrid extends Grid {
             case HIT -> ConsoleColors.RED + "X" + ConsoleColors.RESET;
             case MISS -> ConsoleColors.WHITE + "0" + ConsoleColors.RESET;
         };
+    }
+
+    //Returs true if all ships are sunk
+    public boolean allShipsSunk() {
+        for (int row = 0; row < 10; row++) {
+            for (int col = 0; col < 10; col++) {
+                if (cells[row][col].getState() == CellState.OCCUPIED) {
+                    return false; // Found a ship part still afloat
+                }
+            }
+        }
+        System.out.println("All ships have been sunk!");
+        return true; // No OCCUPIED cells left, all ships sunk
     }
 }
