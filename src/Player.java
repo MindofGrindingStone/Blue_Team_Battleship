@@ -44,8 +44,8 @@ public class Player {
         return shot;
     }
 
-    public void recieveShotResult(CellState result) {
-
+    public void recieveShotResult(Coordinate shot, CellState result) {
+        targetGrid.recieveShotResult(shot, result);
     }
 
 }
