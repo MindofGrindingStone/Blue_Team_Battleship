@@ -80,7 +80,7 @@ public class Menu {
                 chooseNumberOfPlayers();
                 game = new Game(players);
                 game.play();
-                
+
                 break;
             case 2:
                 players.clear();
@@ -97,11 +97,16 @@ public class Menu {
     }
 
     public void chooseNumberOfPlayers() {
-        /*  this method needs to choose the number of players then create them I think
-        also I'm not sure what to do for the tutorial option up above, I am currently calling this
-        right before creating a new game to play the tutorial, maybe we need another method to call
-        that would create a tutorial player? Let me know what you think or if you feel like you have
-        a good idea just throw it in*/
+        /*
+         * this method needs to choose the number of players then create them I think
+         * also I'm not sure what to do for the tutorial option up above, I am currently
+         * calling this
+         * right before creating a new game to play the tutorial, maybe we need another
+         * method to call
+         * that would create a tutorial player? Let me know what you think or if you
+         * feel like you have
+         * a good idea just throw it in
+         */
 
         int numPlayers = 0;
         while (true) {
@@ -119,10 +124,11 @@ public class Menu {
 
         for (int i = 1; i <= numPlayers; i++) {
             String name = ConsoleHelper.getInput("Enter name for Player " + i + ": ");
-            //ask for what kind of ship factory they want.
+            // ask for what kind of ship factory they want.
             ShipFactory shipFactory;
             while (true) {
-                String factoryChoice = (ConsoleHelper.getInput("Choose a ship factory, press M for manual and A for automatic:")).toLowerCase();
+                String factoryChoice = (ConsoleHelper
+                        .getInput("Choose a ship factory, press M for manual and A for automatic:")).toLowerCase();
                 if (factoryChoice.equals("a")) {
                     shipFactory = new AutomaticShipFactory();
                     break;
@@ -146,6 +152,22 @@ public class Menu {
             players.add(ai);
             System.out.println("A computer opponent has been added!");
         }
+    }
+
+    public void printGameOver() {
+        System.out.println(
+                        "  /$$$$$$   /$$$$$$  /$$      /$$ /$$$$$$$$  /$$$$$$  /$$    /$$ /$$$$$$$$ /$$$$$$$ \n" +
+                        " /$$__  $$ /$$__  $$| $$$    /$$$| $$_____/ /$$__  $$| $$   | $$| $$_____/| $$__  $$\n" +
+                        "| $$  \\__/| $$  \\ $$| $$$$  /$$$$| $$      | $$  \\ $$| $$   | $$| $$      | $$  \\ $$\n" +
+                        "| $$ /$$$$| $$$$$$$$| $$ $$/$$ $$| $$$$$   | $$  | $$|  $$ / $$/| $$$$$   | $$$$$$$/\n" +
+                        "| $$|_  $$| $$__  $$| $$  $$$| $$| $$__/   | $$  | $$ \\  $$ $$/ | $$__/   | $$__  $$\n" +
+                        "| $$  \\ $$| $$  | $$| $$\\  $ | $$| $$      | $$  | $$  \\  $$$/  | $$      | $$  \\ $$\n" +
+                        "|  $$$$$$/| $$  | $$| $$ \\/  | $$| $$$$$$$$|  $$$$$$/   \\  $/   | $$$$$$$$| $$  | $$\n" +
+                        " \\______/ |__/  |__/|__/     |__/|________/ \\______/     \\_/    |________/|__/  |__/\n" +
+                        "                                                                                     \n" +
+                        "                                                                                     \n" +
+                        "                                                                                     ");
+
     }
 
 }
