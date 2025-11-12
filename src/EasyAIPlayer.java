@@ -2,41 +2,71 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EasyAIPlayer extends Player {
-
+public class EasyAIPlayer implements Player {
+    private String name;
+    public OceanGrid oceanGrid;
+    public ShipFactory shipFactory;
     private List<Coordinate> availableShots;
 
     public EasyAIPlayer(String name, ShipFactory shipFactory) {
-        super(name, shipFactory);
+        this.name = "Easy AI";
+        this.oceanGrid = new OceanGrid();
+        this.availableShots = getAvailableShots();
+    }
 
-        this.availableShots = new ArrayList<>();
-
+    // Getter for available shots list
+    private List<Coordinate> getAvailableShots() {
+        List<Coordinate> availableShots = new ArrayList<>();
         // Pre-populate all coordinates (10x10 grid)
+        try {
         for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 10; col++) {
                 availableShots.add(new Coordinate(row, col));
             }
+        } } catch (Exception e) {
+         // should be impossible to hit
         }
 
         // Shuffle coordinates for random selection
         Collections.shuffle(availableShots);
-    }
-
-    // Getter for available shots list
-    public List<Coordinate> getAvailableShots() {
         return availableShots;
     }
 
-    // Methods to implement?
     public Coordinate takeShot() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Select the next available shot
+        return availableShots.remove(0);
     }
 
-    public CellState receiveShot(Coordinate coord) {
-        throw new UnsupportedOperationException("Not implemented yet");
+
+    public void receiveShotResult(ShotResult result) {
+        // doesn't do anything
     }
 
-    public void receiveShotResult(Coordinate coord, ShotResult result) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public ShotResult receiveShot(Coordinate coordinate) {
+        return oceanGrid.receiveShot(coordinate);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void displayGrids() { // temporary method to show the customer the printing of a grid
+        // doesn't do anything
+    }
+
+    public void reset() {
+        this.oceanGrid = new OceanGrid();
+        this.availableShots = getAvailableShots();
+    }
+
+
+    public void placeShips() {
+        List<Ship> ships = shipFactory.getShips();
+        oceanGrid.assignShips(ships);
+    }
+
+    public boolean shipsAreSunk() {
+        return oceanGrid.areAllShipsSunk();
+    }
+
 }
