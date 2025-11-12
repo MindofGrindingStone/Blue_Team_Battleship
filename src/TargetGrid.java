@@ -38,4 +38,7 @@ public class TargetGrid extends Grid {
         // Otherwise, valid shot
         return true;
     }
+    public void recieveShotResult(Coordinate shotLocation,  CellState result){
+        cells[shotLocation.getRow()][shotLocation.getColumn()].setState(result);
+    }
 }
