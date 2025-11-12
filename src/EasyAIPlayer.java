@@ -8,7 +8,7 @@ public class EasyAIPlayer implements Player {
     public ShipFactory shipFactory;
     private List<Coordinate> availableShots;
 
-    public EasyAIPlayer(String name, ShipFactory shipFactory) {
+    public EasyAIPlayer(ShipFactory shipFactory) {
         this.name = "Easy AI";
         this.oceanGrid = new OceanGrid();
         this.availableShots = getAvailableShots();
