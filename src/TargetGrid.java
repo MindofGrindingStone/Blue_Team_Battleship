@@ -38,7 +38,14 @@ public class TargetGrid extends Grid {
         // Otherwise, valid shot
         return true;
     }
-    public void recieveShotResult(Coordinate shotLocation,  CellState result){
-        cells[shotLocation.getRow()][shotLocation.getColumn()].setState(result);
+
+    public CellState recieveShotResult(Coordinate shotLocation) {
+        Cell targetCell = this.getCellAt(shotLocation);
+        return targetCell.getState();
+    }
+
+    public void recieveShotResult(Coordinate shot, CellState result) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'recieveShotResult'");
     }
 }

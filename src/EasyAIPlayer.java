@@ -32,8 +32,9 @@ public class EasyAIPlayer extends Player {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 
-    public CellState receiveShot(Coordinate coord) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void receiveShot(Coordinate coord) {
+        oceanGrid.receiveShot(coord);
+        
     }
 
     public void receiveShotResult(Coordinate coord, ShotResult result) {
