@@ -80,7 +80,7 @@ public class Menu {
                 chooseNumberOfPlayers();
                 game = new Game(players);
                 game.play();
-                
+
                 break;
             case 2:
                 players.clear();
@@ -119,10 +119,11 @@ public class Menu {
 
         for (int i = 1; i <= numPlayers; i++) {
             String name = ConsoleHelper.getInput("Enter name for Player " + i + ": ");
-            //ask for what kind of ship factory they want.
+            // ask for what kind of ship factory they want.
             ShipFactory shipFactory;
             while (true) {
-                String factoryChoice = (ConsoleHelper.getInput("Choose a ship factory, press M for manual and A for automatic:")).toLowerCase();
+                String factoryChoice = (ConsoleHelper
+                        .getInput("Choose a ship factory, press M for manual and A for automatic:")).toLowerCase();
                 if (factoryChoice.equals("a")) {
                     shipFactory = new AutomaticShipFactory();
                     break;
@@ -135,17 +136,33 @@ public class Menu {
 
             }
 
-            Player player = new Player(name, shipFactory);
+            Player player = new HumanPlayer(name, shipFactory);
             players.add(player);
         }
 
         // For a single player game, create an AI opponent
         if (numPlayers == 1) {
             ShipFactory aiShipFactory = new AutomaticShipFactory();
-            Player ai = new Player("Computer", aiShipFactory );
+            Player ai = new EasyAIPlayer(aiShipFactory);
             players.add(ai);
-            System.out.println("A computer opponent has been added!");
+            System.out.println("An Easy AI opponent has been added!");
         }
+    }
+
+    public void printGameOver() {
+        System.out.println(
+                        "  /$$$$$$   /$$$$$$  /$$      /$$ /$$$$$$$$  /$$$$$$  /$$    /$$ /$$$$$$$$ /$$$$$$$ \n" +
+                        " /$$__  $$ /$$__  $$| $$$    /$$$| $$_____/ /$$__  $$| $$   | $$| $$_____/| $$__  $$\n" +
+                        "| $$  \\__/| $$  \\ $$| $$$$  /$$$$| $$      | $$  \\ $$| $$   | $$| $$      | $$  \\ $$\n" +
+                        "| $$ /$$$$| $$$$$$$$| $$ $$/$$ $$| $$$$$   | $$  | $$|  $$ / $$/| $$$$$   | $$$$$$$/\n" +
+                        "| $$|_  $$| $$__  $$| $$  $$$| $$| $$__/   | $$  | $$ \\  $$ $$/ | $$__/   | $$__  $$\n" +
+                        "| $$  \\ $$| $$  | $$| $$\\  $ | $$| $$      | $$  | $$  \\  $$$/  | $$      | $$  \\ $$\n" +
+                        "|  $$$$$$/| $$  | $$| $$ \\/  | $$| $$$$$$$$|  $$$$$$/   \\  $/   | $$$$$$$$| $$  | $$\n" +
+                        " \\______/ |__/  |__/|__/     |__/|________/ \\______/     \\_/    |________/|__/  |__/\n" +
+                        "                                                                                     \n" +
+                        "                                                                                     \n" +
+                        "                                                                                     ");
+
     }
 
 }
