@@ -72,20 +72,20 @@ public class Menu {
     private void chooseStartOption(int choice) {
         switch (choice) {
             case 0:
-                game = new Game(players.get(0), players.get(1));
+                game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.play();
                 break;
             case 1:
                 players.clear();
                 chooseNumberOfPlayers();
-                game = new Game(players.get(0), players.get(1));
+                game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.play();
 
                 break;
             case 2:
                 players.clear();
                 chooseNumberOfPlayers(); // needs to be revisited tutorial as a subclass of game
-                game = new Game(players.get(0), players.get(1));
+                game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.playTutorial();
                 break;
             case 3:

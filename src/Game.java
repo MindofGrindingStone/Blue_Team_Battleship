@@ -2,10 +2,10 @@ import java.util.List;
 
 public class Game {
     
-    Player player1;
+    HumanPlayer player1;
     Player player2;
 
-    public Game(Player player1, Player player2) {
+    public Game(HumanPlayer player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
     }
@@ -14,17 +14,15 @@ public class Game {
         player1.reset();
         player2.reset();
         player1.displayGrids(); // temporary line to test grid printing
-        System.out.println("Thanks for showing up " + players.get(0).getName() + "!");
-        for(Player player : players){
-            List<Ship> ships = player.shipFactory.getShips();
-            player.oceanGrid.assignShips(ships);
-        }
-        players.get(0).displayGrids();
+        System.out.println("Thanks for showing up " + player1.getName() + "!");
+        player1.placeShips();
+        player2.placeShips();
+        player1.displayGrids();
         ConsoleHelper.getInput("Press Enter to continue...");
     }
 
     public void playTutorial() {
-        System.out.println("Hey " + players.get(0).getName() + "! This is the tutorial.");
+        System.out.println("Hey " + player1.getName() + "! This is the tutorial.");
         ConsoleHelper.getInput("Press Enter to continue...");
     }
 }
