@@ -97,16 +97,7 @@ public class Menu {
     }
 
     public void chooseNumberOfPlayers() {
-        /*
-         * this method needs to choose the number of players then create them I think
-         * also I'm not sure what to do for the tutorial option up above, I am currently
-         * calling this
-         * right before creating a new game to play the tutorial, maybe we need another
-         * method to call
-         * that would create a tutorial player? Let me know what you think or if you
-         * feel like you have
-         * a good idea just throw it in
-         */
+       
 
         int numPlayers = 0;
         while (true) {
