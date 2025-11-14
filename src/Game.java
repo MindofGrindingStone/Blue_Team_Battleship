@@ -2,16 +2,18 @@ import java.util.List;
 
 public class Game {
     
-    List<Player> players;
+    Player player1;
+    Player player2;
 
-    public Game(List<Player> players) {
-        this.players = players;
+    public Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     public void play() { // method is not fully functional, only currently shows the grid of the first player then has them place ships
-        players.get(0).reset();
-        players.get(1).reset();
-        players.get(0).displayGrids(); // temporary line to test grid printing
+        player1.reset();
+        player2.reset();
+        player1.displayGrids(); // temporary line to test grid printing
         System.out.println("Thanks for showing up " + players.get(0).getName() + "!");
         for(Player player : players){
             List<Ship> ships = player.shipFactory.getShips();
