@@ -72,20 +72,20 @@ public class Menu {
     private void chooseStartOption(int choice) {
         switch (choice) {
             case 0:
-                game = new Game(players);
+                game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.play();
                 break;
             case 1:
                 players.clear();
                 chooseNumberOfPlayers();
-                game = new Game(players);
+                game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.play();
 
                 break;
             case 2:
                 players.clear();
                 chooseNumberOfPlayers(); // needs to be revisited tutorial as a subclass of game
-                game = new Game(players);
+                game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.playTutorial();
                 break;
             case 3:
@@ -97,11 +97,7 @@ public class Menu {
     }
 
     public void chooseNumberOfPlayers() {
-        /*  this method needs to choose the number of players then create them I think
-        also I'm not sure what to do for the tutorial option up above, I am currently calling this
-        right before creating a new game to play the tutorial, maybe we need another method to call
-        that would create a tutorial player? Let me know what you think or if you feel like you have
-        a good idea just throw it in*/
+       
 
         int numPlayers = 0;
         while (true) {

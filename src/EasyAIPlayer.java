@@ -37,14 +37,13 @@ public class EasyAIPlayer implements Player {
         return availableShots.remove(0);
     }
 
-  
-    public ShotResult receiveShot(Coordinate coord) {
-        return oceanGrid.receiveShot(coord);
-}
 
+    public void receiveShotResult(ShotResult result) {
+        // doesn't do anything
+    }
 
-    public void receiveShotResult(Coordinate coord, ShotResult result) {
-        availableShots.remove(coord);
+    public ShotResult receiveShot(Coordinate coordinate) {
+        return oceanGrid.receiveShot(coordinate);
     }
 
     public String getName() {

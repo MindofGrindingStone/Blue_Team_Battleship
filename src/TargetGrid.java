@@ -38,22 +38,11 @@ public class TargetGrid extends Grid {
         // Otherwise, valid shot
         return true;
     }
-
-    public CellState recieveShotResult(Coordinate shotLocation) {
-        Cell targetCell = this.getCellAt(shotLocation);
-        return targetCell.getState();
-    }
-
-    public void recieveShotResult(Coordinate shot, CellState result) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recieveShotResult'");
-=======
     public void receiveShotResult(ShotResult result){
         if (result == ShotResult.HIT || result == ShotResult.SUNK) {
             setCellState(result.getCoordinate(), CellState.HIT);
         } else if (result == ShotResult.MISS) {
             setCellState(result.getCoordinate(), CellState.MISS);
         }
->>>>>>> b08a3653eebd47c55da51d894c3e6808f13e2154
     }
 }
