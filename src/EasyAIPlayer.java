@@ -7,10 +7,13 @@ public class EasyAIPlayer implements Player {
     public OceanGrid oceanGrid;
     public ShipFactory shipFactory;
     private List<Coordinate> availableShots;
+    private TargetGrid targetGrid;
 
     public EasyAIPlayer(ShipFactory shipFactory) {
         this.name = "Easy AI";
         this.oceanGrid = new OceanGrid();
+        this.targetGrid = new TargetGrid();
+        this.shipFactory = shipFactory;
         this.availableShots = getAvailableShots();
     }
 
@@ -38,9 +41,11 @@ public class EasyAIPlayer implements Player {
     }
 
 
-    public void receiveShotResult(ShotResult result) {
-        // doesn't do anything
+    public void receiveShotResult(ShotResult result){ 
+        targetGrid.receiveShotResult(result); 
     }
+
+
 
     public ShotResult receiveShot(Coordinate coordinate) {
         return oceanGrid.receiveShot(coordinate);
@@ -56,6 +61,7 @@ public class EasyAIPlayer implements Player {
 
     public void reset() {
         this.oceanGrid = new OceanGrid();
+        this.targetGrid = new TargetGrid();
         this.availableShots = getAvailableShots();
     }
 
