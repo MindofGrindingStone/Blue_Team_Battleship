@@ -4,6 +4,7 @@ public class Game {
     
     HumanPlayer player1;
     Player player2;
+    ShotResult currentResult;
 
     public Game(HumanPlayer player1, Player player2) {
         this.player1 = player1;
@@ -13,12 +14,71 @@ public class Game {
     public void play() { // method is not fully functional, only currently shows the grid of the first player then has them place ships
         player1.reset();
         player2.reset();
-        player1.displayGrids(); // temporary line to test grid printing
-        System.out.println("Thanks for showing up " + player1.getName() + "!");
-        player1.placeShips();
-        player2.placeShips();
-        player1.displayGrids();
-        ConsoleHelper.getInput("Press Enter to continue...");
+        if (player2 instanceof HumanPlayer) {
+                HumanPlayer player2 = (HumanPlayer) this.player2;
+                System.out.println("Starting a new game between " + player1.getName() + " and " + player2.getName() + "!");
+                System.out.println(player1.getName() + ", place your ships on your Ocean Grid:");
+                player1.placeShips();
+                ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player2.getName() + "...");
+                ConsoleHelper.clearConsoleOSDepenent();
+                player2.placeShips();
+                ConsoleHelper.getInput("Press Enter to clear the console and start the match...");
+                ConsoleHelper.clearConsoleOSDepenent();
+            while (true) {
+                ConsoleHelper.getInput(player1.getName() + "'s turn, press enter to start:");
+                player1.displayGrids();
+                if (currentResult != null) {
+                    RecapResults(currentResult);
+                }
+                currentResult = player2.receiveShot(player1.takeShot());
+                DisplayResults(currentResult);
+                player1.receiveShotResult(currentResult);
+                if (player2.shipsAreSunk()) {
+                    System.out.println(player1.getName() + " wins! All enemy ships have been sunk.");
+                    break;
+                }
+                ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player2.getName() + "...");
+                ConsoleHelper.clearConsoleOSDepenent();
+                ConsoleHelper.getInput(player2.getName() + "'s turn, press enter to start:");
+                RecapResults(currentResult);
+                player2.displayGrids();
+                currentResult = player1.receiveShot(player2.takeShot());
+                DisplayResults(currentResult);
+                player2.receiveShotResult(currentResult);
+                if (player1.shipsAreSunk()) {
+                    System.out.println(player2.getName() + " wins! All enemy ships have been sunk.");
+                    break;
+                }
+                ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player1.getName() + "...");
+                ConsoleHelper.clearConsoleOSDepenent();
+            }
+        } else {
+            System.out.println("Starting a new game between " + player1.getName() + " and " + player2.getName() + "!");
+            System.out.println(player1.getName() + ", place your ships on your Ocean Grid:");
+            player1.placeShips();
+            player2.placeShips();
+            ConsoleHelper.getInput("Press Enter to start the match...");
+            while (true) {
+                player1.displayGrids();
+                if (currentResult != null) {
+                    RecapResults(currentResult);
+                }
+                currentResult = player2.receiveShot(player1.takeShot());
+                DisplayResults(currentResult);
+                ConsoleHelper.getInput("Press Enter to continue...");
+                player1.receiveShotResult(currentResult);
+                if (player2.shipsAreSunk()) {
+                    System.out.println(player1.getName() + " wins! All enemy ships have been sunk.");
+                    break;
+                }
+                currentResult = player1.receiveShot(player2.takeShot());
+                player2.receiveShotResult(currentResult);
+                if (player1.shipsAreSunk()) {
+                    System.out.println(player2.getName() + " wins! All enemy ships have been sunk.");
+                    break;
+                }
+            }
+        }
     }
 
     public void playTutorial() {
@@ -80,4 +140,20 @@ public class Game {
     ConsoleHelper.getInput("\nPress Enter to return to the main menu...");
 }
 
+
+    public void DisplayResults(ShotResult result) {
+        switch (result) {
+            case HIT -> System.out.println(result.getCoordinate() + "'s a hit on your opponent's " + result.getShipName() + "!");
+            case MISS -> System.out.println("It's a miss.");
+            case SUNK -> System.out.println("You sunk your opponent's " + result.getShipName() + "!");
+        }
+    }
+
+    public void RecapResults(ShotResult result) {
+        switch (result) {
+            case HIT -> System.out.println("Your " + result.getShipName() + " was hit at " + result.getCoordinate() + "!");
+            case MISS -> System.out.println("The shot at " + result.getCoordinate() + " missed your fleet.");
+            case SUNK -> System.out.println("Your " + result.getShipName() + " was sunk!");
+        }
+    }   
 }

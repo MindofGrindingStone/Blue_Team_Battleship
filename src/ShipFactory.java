@@ -18,6 +18,9 @@ public abstract class ShipFactory {
             while (true) {
                 try {
                     // Prompt user for coordinates
+                    if (this instanceof ManualShipFactory) {
+                        pg.print();
+                    }
                     Set<Coordinate> coordinates = generateCoordinates(name, length);
                     Ship ship = new Ship(length, name, coordinates);
                     if (!checkIntersection(ship, occupiedCoordinates)) {
@@ -25,7 +28,6 @@ public abstract class ShipFactory {
                         ships.add(ship);
                         if (this instanceof ManualShipFactory) {
                             pg.assignShip(ship);
-                            pg.print();
                             List<Coordinate> sortedCoords = new ArrayList<>(ship.getCoords());
                             sortedCoords.sort(Comparator.comparing(Coordinate::toString));
                             System.out.println((name + " placed at: " + sortedCoords).replace("[", "").replace("]", ""));
