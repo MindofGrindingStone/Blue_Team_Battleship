@@ -42,9 +42,13 @@ public class Menu {
         while (true) {
             if (players == null || players.isEmpty()) {
                 greetUser();
-                Integer choice = Character.getNumericValue(
-                        ConsoleHelper.getInput("1. Start New Game\n2. Tutorial\n3. Exit\nEnter Here: ").charAt(0));
                 while (true) {
+                String input = ConsoleHelper.getInput("1. Start New Game\n2. Tutorial\n3. Exit\nEnter Here: ");
+                if (input.length() != 1) {
+                    System.out.println("Invalid choice, please try again.");
+                    continue;
+                }
+                Integer choice = Character.getNumericValue(input.charAt(0));
                     if (choice < 1 || choice > 3) {
                         System.out.println("Invalid choice, please try again.");
                     } else {
@@ -54,10 +58,13 @@ public class Menu {
                 }
             } else {
                 System.out.println("Thanks for playing Battleship! Please choose from the following options:");
-                Integer choice = Character.getNumericValue(
-                        ConsoleHelper.getInput("1. Replay\n2. Start New Game\n3. Tutorial\n4. Exit\nEnter Here: ")
-                                .charAt(0));
                 while (true) {
+                String input = ConsoleHelper.getInput("1. Replay\n2. Start New Game\n3. Tutorial\n4. Exit\nEnter Here: ");
+                if (input.length() != 1) {
+                    System.out.println("Invalid choice, please try again.");
+                    continue;
+                }
+                Integer choice = Character.getNumericValue(input.charAt(0));
                     if (choice < 1 || choice > 4) {
                         System.out.println("Invalid choice, please try again.");
                     } else {
