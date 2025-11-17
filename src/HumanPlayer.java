@@ -2,9 +2,13 @@ import java.util.List;
 
 public class HumanPlayer implements Player {
     private String name;
-    public OceanGrid oceanGrid;
+    private OceanGrid oceanGrid;
     private TargetGrid targetGrid;
-    public ShipFactory shipFactory;
+    private ShipFactory shipFactory;
+
+    public ShipFactory getShipFactory() {
+        return shipFactory;
+    }
 
     public HumanPlayer(String name, ShipFactory shipFactory) {
         this.name = name;

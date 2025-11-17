@@ -15,10 +15,19 @@ public class Game {
         if (player2 instanceof HumanPlayer) {
                 HumanPlayer player2 = (HumanPlayer) this.player2;
                 System.out.println("Starting a new game between " + player1.getName() + " and " + player2.getName() + "!");
+                if (player1.getShipFactory() instanceof ManualShipFactory) {
                 System.out.println(player1.getName() + ", place your ships on your Ocean Grid:");
+                } else {
+                    System.out.println(player1.getName() + ", you have chosen the Automatic Ship Factory. Your ships will be placed automatically.");
+                }
                 player1.placeShips();
                 ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player2.getName() + "...");
                 ConsoleHelper.clearConsole();
+                if (player2.getShipFactory() instanceof ManualShipFactory) {
+                System.out.println(player2.getName() + ", place your ships on your Ocean Grid:");
+                } else {
+                    System.out.println(player2.getName() + ", you have chosen the Automatic Ship Factory. Your ships will be placed automatically.");
+                }
                 player2.placeShips();
                 ConsoleHelper.getInput("Press Enter to clear the console and start the match...");
                 ConsoleHelper.clearConsole();
@@ -52,7 +61,11 @@ public class Game {
             }
         } else {
             System.out.println("Starting a new game between " + player1.getName() + " and " + player2.getName() + "!");
-            System.out.println(player1.getName() + ", place your ships on your Ocean Grid:");
+            if (player1.getShipFactory() instanceof ManualShipFactory) {
+                System.out.println(player1.getName() + ", place your ships on your Ocean Grid:");
+                } else {
+                    System.out.println(player1.getName() + ", you have chosen the Automatic Ship Factory. Your ships will be placed automatically.");
+                }
             player1.placeShips();
             player2.placeShips();
             ConsoleHelper.getInput("Press Enter to start the match...");
