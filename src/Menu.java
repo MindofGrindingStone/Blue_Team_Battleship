@@ -81,13 +81,14 @@ public class Menu {
             case 0:
                 game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.play();
+                printGameOver();
                 break;
             case 1:
                 players.clear();
                 chooseNumberOfPlayers();
                 game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.play();
-
+                printGameOver();
                 break;
             case 2:
                 players.clear();
