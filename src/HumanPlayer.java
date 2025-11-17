@@ -42,7 +42,11 @@ public class HumanPlayer implements Player {
         while (true) {
             try {
                 shot = new Coordinate(ConsoleHelper.getInput("Input Coordinate for shot:"));
-                break;
+                if (targetGrid.verifyShot(shot)){
+                    break;
+                } else {
+                    System.out.println("You have already shot at this coordinate. Please choose another.");
+                }
             } catch (Exception e) {
                 System.out.println("invalid shot");
             }

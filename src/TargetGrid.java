@@ -22,7 +22,6 @@ public class TargetGrid extends Grid {
 
         // Bounds check to prevent invalid coordinate access
         if (row < 0 || row >= 10 || col < 0 || col >= 10) {
-            System.out.println("Invalid coordinates.");
             return false;
         }
 
@@ -31,7 +30,6 @@ public class TargetGrid extends Grid {
 
         // Already fired here
         if (state == CellState.HIT || state == CellState.MISS) {
-            System.out.println("You already fired at that location!");
             return false;
         }
 
