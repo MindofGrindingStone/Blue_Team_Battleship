@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleHelper {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static String getInput(final String prompt) {
         String inStr = "";
@@ -16,8 +16,11 @@ public class ConsoleHelper {
         return inStr;
     }
 
-    public static void clearConsoleOSDepenent(){
-        System.out.print("\\033[H\\033[2J");
+    public static void clearConsole() {
+        for (int i = 0; i < 200; i++) {
+            System.out.println();
+        }
+        System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 }

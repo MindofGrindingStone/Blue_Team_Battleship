@@ -20,10 +20,10 @@ public class Game {
                 System.out.println(player1.getName() + ", place your ships on your Ocean Grid:");
                 player1.placeShips();
                 ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player2.getName() + "...");
-                ConsoleHelper.clearConsoleOSDepenent();
+                ConsoleHelper.clearConsole();
                 player2.placeShips();
                 ConsoleHelper.getInput("Press Enter to clear the console and start the match...");
-                ConsoleHelper.clearConsoleOSDepenent();
+                ConsoleHelper.clearConsole();
             while (true) {
                 ConsoleHelper.getInput(player1.getName() + "'s turn, press enter to start:");
                 player1.displayGrids();
@@ -38,7 +38,7 @@ public class Game {
                     break;
                 }
                 ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player2.getName() + "...");
-                ConsoleHelper.clearConsoleOSDepenent();
+                ConsoleHelper.clearConsole();
                 ConsoleHelper.getInput(player2.getName() + "'s turn, press enter to start:");
                 RecapResults(currentResult);
                 player2.displayGrids();
@@ -50,7 +50,7 @@ public class Game {
                     break;
                 }
                 ConsoleHelper.getInput("Press Enter to clear the console and pass to " + player1.getName() + "...");
-                ConsoleHelper.clearConsoleOSDepenent();
+                ConsoleHelper.clearConsole();
             }
         } else {
             System.out.println("Starting a new game between " + player1.getName() + " and " + player2.getName() + "!");
@@ -85,7 +85,7 @@ public class Game {
     player1.reset();
     player2.reset();
 
-    ConsoleHelper.clearConsoleOSDepenent();
+    ConsoleHelper.clearConsole();
 
     System.out.println(ConsoleColors.GREEN + "Welcome to Battleship, " + player1.getName() + "!" + ConsoleColors.RESET);
 
