@@ -4,7 +4,7 @@ public class HumanPlayer implements Player {
     private String name;
     private OceanGrid oceanGrid;
     private TargetGrid targetGrid;
-    public PlayerStats playerStats = new PlayerStats();
+    public PlayerStats playerStats;
     private ShipFactory shipFactory;
 
     public ShipFactory getShipFactory() {
@@ -17,6 +17,7 @@ public class HumanPlayer implements Player {
         this.oceanGrid = new OceanGrid();
         this.targetGrid = new TargetGrid();
         this.shipFactory = shipFactory;
+        this.playerStats = new PlayerStats();
     }
 
     public ShotResult receiveShot(Coordinate coordinate) {
