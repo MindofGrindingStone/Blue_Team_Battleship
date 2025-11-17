@@ -16,8 +16,18 @@ public class ConsoleHelper {
         return inStr;
     }
 
-    public static void clearConsoleOSDepenent(){
-        System.out.print("\\033[H\\033[2J");
-        System.out.flush();
+    public static void clearConsoleOSDepenent(){ // acquired from AI overview
+        try {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (final Exception e) {
+            // Handle exceptions, e.g., if the command fails to execute
+            e.printStackTrace();
+        }
     }
 }
