@@ -2,8 +2,17 @@ public class PlayerStats {
     private int shotsFired;
     private int hits;
     private int misses;
-    private int shipsRemaining;
     
+    
+
+    
+
+    public PlayerStats() {
+        this.shotsFired = 0;
+        this.hits = 0;
+        this.misses = 0;
+    
+    }
     public int getShotsFired() {
         return shotsFired;
     }
@@ -13,8 +22,19 @@ public class PlayerStats {
     public int getMisses() {
         return misses;
     }
-    public int getShipsRemaining() {
-        return shipsRemaining;
+    public void addShotFired(){
+        shotsFired++;
     }
+    public void addHit(){
+        hits++;
+    }
+    public void addMiss(){
+        misses++;
+    }
+    public float getAccuracy(){
+        float accuracy = ((hits/shotsFired) * 100);
+        return accuracy;
+    }
+    
 
 }

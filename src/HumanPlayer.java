@@ -4,10 +4,12 @@ public class HumanPlayer implements Player {
     private String name;
     private OceanGrid oceanGrid;
     private TargetGrid targetGrid;
+    public PlayerStats playerStats = new PlayerStats();
     private ShipFactory shipFactory;
 
     public ShipFactory getShipFactory() {
         return shipFactory;
+    
     }
 
     public HumanPlayer(String name, ShipFactory shipFactory) {
@@ -47,6 +49,7 @@ public class HumanPlayer implements Player {
             try {
                 shot = new Coordinate(ConsoleHelper.getInput("Input Coordinate for shot:"));
                 if (targetGrid.verifyShot(shot)){
+                    playerStats.addShotFired();
                     break;
                 } else {
                     System.out.println("You have already shot at this coordinate. Please choose another.");
@@ -59,6 +62,11 @@ public class HumanPlayer implements Player {
     }
 
     public void receiveShotResult(ShotResult result) {
+        if (result == ShotResult.MISS){
+            playerStats.addMiss();
+        } else if (result == ShotResult.HIT){
+            playerStats.addHit();
+        }
         targetGrid.receiveShotResult(result);
     }
 
