@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ConsoleHelper {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in)); 
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static String getInput(final String prompt) {
         String inStr = "";
@@ -16,18 +16,26 @@ public class ConsoleHelper {
         return inStr;
     }
 
-    public static void clearConsoleOSDepenent(){ // acquired from AI overview
+    public static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");
 
             if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            new ProcessBuilder("cmd", "/c", "cls")
+                    .inheritIO()
+                    .start()
+                    .waitFor();
             } else {
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            // Linux / macOS / Unix-like
+            new ProcessBuilder("clear")
+                    .inheritIO()
+                    .start()
+                    .waitFor();
             }
+        
         } catch (final Exception e) {
-            // Handle exceptions, e.g., if the command fails to execute
-            e.printStackTrace();
+            // Handle exceptions, e.g., if the command fails
+            System.err.println("Error clearing console: " + e.getMessage());
         }
     }
 }
