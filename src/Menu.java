@@ -92,7 +92,7 @@ public class Menu {
                 break;
             case 2:
                 players.clear();
-                chooseNumberOfPlayers(); // needs to be revisited tutorial as a subclass of game
+                chooseNumberOfPlayers();
                 game = new Game((HumanPlayer) players.get(0), players.get(1));
                 game.playTutorial();
                 break;

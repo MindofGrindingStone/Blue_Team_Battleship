@@ -28,7 +28,7 @@ public class HumanPlayer implements Player {
         return name;
     }
 
-    public void displayGrids() { // temporary method to show the customer the printing of a grid
+    public void displayGrids() {
         System.out.print("Target Grid");
         System.out.println();
         targetGrid.print();
